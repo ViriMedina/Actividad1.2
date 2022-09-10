@@ -159,55 +159,39 @@ void mergeSort(T *arr, int n) {
     std::copy(merged, merged+n, arr);
 }   
 
+// auxiliary for quick sort
+
+int swapping(std::vector<int> &arr, int lowest_index, int max_index){
+    int pivot = arr[max_index];
+    int i = (lowest_index - 1);
+    for (int j = lowest_index; j <= max_index - 1; j++)
+    {
+        if (arr[j] < pivot)
+        {
+            i++;
+            std::swap(arr[i], arr[j]);
+        }
+    }
+    std::swap(arr[i + 1], arr[max_index]);
+    return (i + 1);
+}
 
 /**
- * @brief Sorts array using the quicksort algorithm which has 
+ * @brief Sorts array using the quicksort algorithm which has O(n^2) and Omega(nlog(n)) 
  * 
  * @tparam T type of the keys in the array
  * @param arr array to be sorted
  * @param n size of the array
  */
-template <typename T>
-void quickSort(T *arr, int n) {
-    if (n < 2) {
-        return;
-    }
-    
-    std::vector<T> less;
-    std::vector<T> greater;
-    std::cout << "comparing with " << arr[n-1] << "\n";
-    for (int i=0; i<n-1; i++) {
-        if (arr[i] < arr[n-1]) {
-            less.push_back(arr[i]);
-        } else {
-            greater.push_back(arr[i]);
-        }
-    }
-    
-    T *less_arr = new T[less.size()];
-    std::copy(less.begin(), less.end(), less_arr);
-    std::cout << "less array\n";
-    printArr<T>(less_arr, less.size());
-
-    T *greater_arr = new T[greater.size()];
-    std::copy(greater.begin(), greater.end(), greater_arr);
-    std::cout << "Greater array\n";
-    printArr<T>(greater_arr, greater.size());
-
-    quickSort(less_arr, less.size());
-    quickSort(greater_arr, greater.size());
-
-    // we assume that they got sorted so we dont make 
-    // comparisons while moving data
-
-    for (int ptr=0; ptr<n; ptr++) {
-        if (ptr < less.size()) {
-            arr[ptr] = less[ptr];
-        } else {
-            arr[ptr] = greater[ptr];
-        }
-    }
-} 
+void quickSort(std::vector<int> &arr, int lowest_index, int max_index) {
+  int i;
+    if (lowest_index < max_index)
+    {
+        int part_index = swapping(arr, lowest_index, max_index);
+        quickSort(arr, lowest_index, part_index - 1);
+        quickSort(arr, part_index + 1, max_index);
+    }  
+}
 
 // SEARCHES
 
@@ -265,9 +249,11 @@ int binarySearch(T* arr, int n, T key) {
 
 int main()
 {
-    int arr[] = {10, 9, 8, 7, 6, 4, 5, 3, 2, 1};
-    quickSort<int>(arr, 10);
-    printArr<int>(arr, 10);
+    std::vector<int> vec = {10, 9, 8, 7, 6, 4, 5, 3, 2, 1};
+    quickSort(vec, 0, 9);
 
-    std::cout << binarySearch<int>(arr, 10, 10) << "\n";
+    for (int item : vec) {
+        std::cout << item << " ";
+    }
+    // st::cout << binarySearch<int>(arr, 10, 10) << "\n";
 }
