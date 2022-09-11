@@ -35,6 +35,11 @@ void printArr(T *arr, int n) {
  * 
  * @param n numero de llaves en el array
  */
+
+// bubble sort 
+// Complejidad: O(n^2) -> Cuadratica
+// Mejor Caso: Arreglo ordenado. (N comparaciones)  -> O(n)
+// Peor Caso:  Arreglo ordenado inversamente. (Máximo # de comparaciones) -> O(n^2)
 template <typename T>
 void bubbleSort(T *arr, int n) {
     for (int i=0; i<n-1; i++) {
@@ -56,6 +61,10 @@ void bubbleSort(T *arr, int n) {
  * @param arr T* pointer t the start of the array
  * @param n int size of the array
  */
+// Swap Sort
+// Complejidad: O(n^2) -> Cuadratica
+// Mejor Caso: Arreglo Ordenado. -> O(n^2)
+// Peor Caso: Arreglo ordenado inversamente. -> O(n^2)
 template <typename T>
 void swapSort(T *arr, int n) {
     for (int i=0; i<n-1; i++) {
@@ -77,6 +86,11 @@ void swapSort(T *arr, int n) {
  * @param arr array of keyss
  * @param n size of the array
  */
+
+//insertion sort 
+// Complejidad: O(n^2) -> Cuadratica
+// Mejor Caso: Arreglo Ordenado. (Solo se ejecuta bucle exterior N veces) -> O (n)
+// Peor Caso: Arreglo Ordenado inversamente. (Máximo # de comparaciones e intercambios) ->  O(n^2)
 template <typename T>
 void insertionSort(T *arr, int n) {
     for (int i=1; i<n; i++) {
@@ -143,6 +157,10 @@ T *mergeArr(T *arr1, T *arr2, int l1, int l2) {
  * @param arr array of keys type T
  * @param n size of the array 
  */
+//merge sort 
+// Complejidad: O(n log n) -> Logaritmica
+// Mejor Caso: Se divide justo a la mitad.->  O(n log n)
+// Peor Caso: Arreglo ordenado. ->  O(n log n)
 template <typename T>
 void mergeSort(T *arr, int n) {
     if (n < 2) {
@@ -183,6 +201,11 @@ int swapping(std::vector<int> &arr, int lowest_index, int max_index){
  * @param arr array to be sorted
  * @param n size of the array
  */
+
+//quick sort 
+// Complejidad: O(n log n) -> Logaritmica
+// Mejor Caso: se divide la lista justo en el centro. ->  O(n log n)
+// Peor Caso: Datos ya ordenados o inversamente ordenados. ->  O(n log n)
 void quickSort(std::vector<int> &arr, int lowest_index, int max_index) {
   int i;
     if (lowest_index < max_index)
@@ -205,6 +228,11 @@ void quickSort(std::vector<int> &arr, int lowest_index, int max_index) {
  * 
  * @return int index of the item looked for or -1 if it doesnt exist
  */
+
+//sequential search 
+// Complejidad: O(n) -> Lineal
+// Mejor Caso: El elemento que se esta buscando esta en la primera posición. 
+// Peor Caso: El elemento que se esta buscando esta en la ultima posición. 
 template <typename T>
 int sequentiaSearch(T* arr, int n, T key) {
     for (int i=0; i<n; i++) {
@@ -225,6 +253,11 @@ int sequentiaSearch(T* arr, int n, T key) {
  * 
  * @return int index of the item looked for or -1 if it doesnt exist
  */
+
+//binary search 
+// Complejidad: O(n) -> Lineal
+// Mejor Caso: El elemento que se esta buscando esta en el centro. -> O(1)
+// Peor Caso: El elemento que se esta buscando esta en la esquina. -> O(logn)
 template <typename T>
 int binarySearch(T* arr, int n, T key) {
     int lower = 0;
